@@ -74,6 +74,15 @@ namespace StarterAssets
 
 		private const float _threshold = 0.01f;
 
+		public GameObject temp_key;
+		Animator m_Animator;
+		public GameObject key1;
+		public GameObject key2;
+		public GameObject key3;
+		public GameObject key4;
+		public GameObject key5;
+		public GameObject key6;
+
 		private bool IsCurrentDeviceMouse
 		{
 			get
@@ -108,18 +117,55 @@ namespace StarterAssets
 			// reset our timeouts on start
 			_jumpTimeoutDelta = JumpTimeout;
 			_fallTimeoutDelta = FallTimeout;
+			if(Global.door_num != 0){
+				temp_key = GameObject.Find("key" + Global.door_num);
+            	m_Animator = temp_key.GetComponent<Animator>();
+			}
 		}
 
 		private void Update()
 		{
 			JumpAndGravity();
 			GroundedCheck();
-			Move();
+			if ( Global.door_num == 0)
+				Move();
+			else {
+
+				// key1.SetActive(true);
+				// key2.SetActive(true);
+				// key3.SetActive(true);
+				// key4.SetActive(true);
+				// key5.SetActive(true);
+				// key6.SetActive(true);
+
+				// temp_key = GameObject.Find("key" + Global.door_num);
+    //         	m_Animator = temp_key.GetComponent<Animator>();
+				// if(!m_Animator.GetBool("play_flag"))
+					Move();
+			}
+				
+
 		}
 
 		private void LateUpdate()
 		{
-			CameraRotation();
+
+			if ( Global.door_num == 0)
+				CameraRotation();
+			else {
+
+				// key1.SetActive(true);
+				// key2.SetActive(true);
+				// key3.SetActive(true);
+				// key4.SetActive(true);
+				// key5.SetActive(true);
+				// key6.SetActive(true);
+				
+				// temp_key = GameObject.Find("key" + Global.door_num);
+    //         	m_Animator = temp_key.GetComponent<Animator>();
+				// if(!m_Animator.GetBool("play_flag"))
+					CameraRotation();
+			}
 		}
 
 		private void GroundedCheck()
